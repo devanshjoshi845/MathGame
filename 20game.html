@@ -7,7 +7,172 @@
     <title>Maths Game</title>
     
 </head>
-<link rel="stylesheet" href="style.css">
+<style>html{
+    height: 100%;
+    background: radial-gradient(circle, #fff, #ccc);
+   }
+   
+   #container{
+    height: 400px;
+    width: 550px;
+    background-color: #9DD2EA;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 0px 0px #009de4;
+    position: relative;
+   
+   
+   }
+   
+   #score{
+    background-color: palegoldenrod;
+    color: black;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    position: absolute;
+    left: 500px;
+    box-shadow: 4px 4px 0px purple;
+   
+   }
+   
+   #correct{
+    position: absolute;
+    left: 260px;
+    background-color: green;
+    color: #fff;
+    padding: 11px;
+    display: none;
+   }
+   
+   #wrong{
+    position: absolute;
+    left: 250px;
+    background-color: red;
+    color: #fff;
+    padding: 11px;
+    display: none;
+   }
+   
+   #question{
+    width: 450px;
+    height: 150px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    background-color: aquamarine;
+    box-shadow: 4px 4px purple;
+    font-size: 100px;
+    text-align: center;
+    font-family: cursive, sans-serif;
+    color: black;
+   
+   }
+   
+   #instruction{
+    width: 450px;
+    height: 50px;
+    background-color: pink;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 45px;
+    box-shadow: 4px 4px purple;
+   
+   }
+   
+   #choices{
+    width: 450px;
+    height: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+   }
+   
+   .box{
+    height: 85px;
+    width: 85px;
+    background-color: aliceblue;
+    float: left;
+    margin-right: 36px;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 4px 4px grey;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 80px;
+   }
+   
+   .box:hover{
+    background-color: aqua;
+    box-shadow: 4px 4px blue;
+   }
+   
+   #box4{
+    margin-right: 0;
+   }
+   
+   #startreset{
+    width: 110px;
+    padding: 5px;
+    background-color: aliceblue;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 2px 2px grey;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0 auto;
+   
+   
+   }
+   
+   #startreset:hover{
+    background-color: bisque;
+    box-shadow: 2px 2px burlywood;
+   
+   
+   }
+   
+   #timeremaining{
+    width: 180px;
+    padding: 5px;
+    position: absolute;
+    top: 398px;
+    left: 390px;
+    background-color: rgb(26, 222, 222);
+    text-align: center;
+    font-weight: bold;
+    border-radius: 3px;
+    display: none;
+   
+   }
+   
+   #gameOver{
+    height: 220px;
+    width: 500px;
+    background: linear-gradient(orange, rgb(211, 204, 189) );
+    color: #fff;
+    font-size: 2.5em;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    top: 100px;
+    left: 45px;
+    z-index: 2;
+    display: none;
+   }</style>
+<script src="java.js"></script>
 <body>
     <div id="container">
         <div id="score">
@@ -64,9 +229,8 @@
         </div>
 
     </div>
-    <script>
-     //javascript.js
-var playing = false;
+<script>
+    var playing = false;
 var score;
 var action;
 var timeremaining;
@@ -75,89 +239,89 @@ var correctAnswer;
 //if we click on the start/reset
 document.getElementById("startreset").onclick = function(){
 
-    //if we are playing
+//if we are playing
 
-    if(playing == true){
+if(playing == true){
 
-        location.reload(); //reload page
+   location.reload(); //reload page
 
-    }else{//if we are not playing
+}else{//if we are not playing
 
-        //change mode to playing
+   //change mode to playing
 
-        playing = true;
+   playing = true;
 
-        //set score to 0
+   //set score to 0
 
-        score = 0;
-        document.getElementById("scorevalue").innerHTML = score;
+   score = 0;
+   document.getElementById("scorevalue").innerHTML = score;
 
-        //show countdown box 
+   //show countdown box 
 
-        show("timeremaining");
-        timeremaining = 60;
-        document.getElementById("timeremainingvalue").innerHTML = timeremaining;
+   show("timeremaining");
+   timeremaining = 60;
+   document.getElementById("timeremainingvalue").innerHTML = timeremaining;
 
-        //hide game over box
+   //hide game over box
 
-        hide("gameOver");
+   hide("gameOver");
 
-        //change button to reset
-        document.getElementById("startreset").innerHTML = "Reset Game";
+   //change button to reset
+   document.getElementById("startreset").innerHTML = "Reset Game";
 
-        //start countdown
+   //start countdown
 
-        startCountdown();
+   startCountdown();
 
-        //generate a new Q&A
+   //generate a new Q&A
 
-        generateQA();
-    }
+   generateQA();
+}
 
 }
 
 //Clicking on an answer box
 
 for(i=1; i<5; i++){
-    document.getElementById("box"+i).onclick = function(){
-    //check if we are playing     
-    if(playing == true){//yes
-        if(this.innerHTML == correctAnswer){
-        //correct answer
+document.getElementById("box"+i).onclick = function(){
+//check if we are playing     
+if(playing == true){//yes
+   if(this.innerHTML == correctAnswer){
+   //correct answer
 
-            //increase score by 1
-            score++;
-            document.getElementById("scorevalue").innerHTML = score;
-            //hide wrong box and show correct box
-            hide("wrong");
-            show("correct");
-            setTimeout(function(){
-                hide("correct");   
-            }, 1000);
+       //increase score by 1
+       score++;
+       document.getElementById("scorevalue").innerHTML = score;
+       //hide wrong box and show correct box
+       hide("wrong");
+       show("correct");
+       setTimeout(function(){
+           hide("correct");   
+       }, 1000);
 
-            //Generate new Q&A
+       //Generate new Q&A
 
-            generateQA();
-        }else{
-        //wrong answer
-            hide("correct");
-            show("wrong");
-            setTimeout(function(){
-                hide("wrong");   
-            }, 1000);
-        }
-    }
+       generateQA();
+   }else{
+   //wrong answer
+       hide("correct");
+       show("wrong");
+       setTimeout(function(){
+           hide("wrong");   
+       }, 1000);
+   }
+}
 }   
 }
 //if we click on answer box
-    //if we are playing
-        //correct?
-            //yes
-                //increase score
-                //show correct box for 1sec
-                //generate new Q&A
-            //no
-                //show try again box for 1sec
+//if we are playing
+   //correct?
+       //yes
+           //increase score
+           //show correct box for 1sec
+           //generate new Q&A
+       //no
+           //show try again box for 1sec
 
 
 //functions
@@ -165,65 +329,66 @@ for(i=1; i<5; i++){
 //start counter
 
 function startCountdown(){
-    action = setInterval(function(){
-        timeremaining -= 1;
-        document.getElementById("timeremainingvalue").innerHTML = timeremaining;
-        if(timeremaining == 0){// game over
-            stopCountdown();
-            show("gameOver");
-         document.getElementById("gameOver").innerHTML = "<p>Game over!</p><p>Your score is " + score + ".</p>";   
-            hide("timeremaining");
-            hide("correct");
-            hide("wrong");
-            playing = false;
-            document.getElementById("startreset").innerHTML = "Start Game";
-        }
-    }, 1000);    
+action = setInterval(function(){
+   timeremaining -= 1;
+   document.getElementById("timeremainingvalue").innerHTML = timeremaining;
+   if(timeremaining == 0){// game over
+       stopCountdown();
+       show("gameOver");
+    document.getElementById("gameOver").innerHTML = "<p>Game over!</p><p>Your score is " + score + ".</p>";   
+       hide("timeremaining");
+       hide("correct");
+       hide("wrong");
+       playing = false;
+       document.getElementById("startreset").innerHTML = "Start Game";
+   }
+}, 1000);    
 }
 
 //stop counter
 
 function stopCountdown(){
-    clearInterval(action);   
+clearInterval(action);   
 }
 
 //hide an element
 
 function hide(Id){
-    document.getElementById(Id).style.display = "none";   
+document.getElementById(Id).style.display = "none";   
 }
 
 //show an element
 
 function show(Id){
-    document.getElementById(Id).style.display = "block";   
+document.getElementById(Id).style.display = "block";   
 }
 
 //generate question and multiple answers
 
 function generateQA(){
-    var x = 1+ Math.round(9*Math.random());
-    var y = 1+ Math.round(9*Math.random());
-    correctAnswer = x*y;
-    document.getElementById("question").innerHTML = x + "x" + y;
-    var correctPosition = 1+ Math.round(3*Math.random());
-    document.getElementById("box"+correctPosition).innerHTML = correctAnswer; //fill one box with the correct answer
+var x = 1+ Math.round(9*Math.random());
+var y = 1+ Math.round(9*Math.random());
+correctAnswer = x*y;
+document.getElementById("question").innerHTML = x + "x" + y;
+var correctPosition = 1+ Math.round(3*Math.random());
+document.getElementById("box"+correctPosition).innerHTML = correctAnswer; //fill one box with the correct answer
 
-    //fill other boxes with wrong answers
+//fill other boxes with wrong answers
 
-    var answers = [correctAnswer];
+var answers = [correctAnswer];
 
-    for(i=1; i<5; i++){
-        if(i != correctPosition) {
-            var wrongAnswer;
-            do{
-                wrongAnswer = (1+ Math.round(9*Math.random()))*(1+ Math.round(9*Math.random())); //a wrong answer
-            }while(answers.indexOf(wrongAnswer)>-1)
-            document.getElementById("box"+i).innerHTML = wrongAnswer;
-            answers.push(wrongAnswer);
-        }
-    }
+for(i=1; i<5; i++){
+   if(i != correctPosition) {
+       var wrongAnswer;
+       do{
+           wrongAnswer = (1+ Math.round(9*Math.random()))*(1+ Math.round(9*Math.random())); //a wrong answer
+       }while(answers.indexOf(wrongAnswer)>-1)
+       document.getElementById("box"+i).innerHTML = wrongAnswer;
+       answers.push(wrongAnswer);
+   }
 }
-    </script>
+}
+
+</script>
 </body>
 </html> 
